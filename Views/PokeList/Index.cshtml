@@ -1,1 +1,17 @@
-﻿<p>List</p>
+﻿@model PokemonMVC.Models.PokemonListResponse
+<h1>All Pokémon</h1>
+
+@if(Model == null)
+{
+    <p class="text-danger">Wrong</p>
+}
+else
+{
+    <p>Total: @Model.Count</p>
+    <ul>
+        @foreach (var p in Model.Results)
+        {
+            <li>@p.Name</li>
+        }
+    </ul>
+}
