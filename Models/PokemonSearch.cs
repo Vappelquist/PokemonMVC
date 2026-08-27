@@ -5,7 +5,7 @@ namespace PokemonMVC.Models
     public class PokemonSearch
     {
         [JsonPropertyName("id")]
-        public string PokemonId { get; set; }
+        public int PokemonId { get; set; }
 
         [JsonPropertyName("name")]
         public string PokemonName { get; set; }
