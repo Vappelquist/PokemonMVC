@@ -1,17 +1,82 @@
-﻿@model PokemonMVC.Models.PokemonListResponse
-<h1>All Pokémon</h1>
+﻿@model PokemonMVC.Models.PokeListViewModel
 
-@if(Model == null)
+<form class "searchbar" method="post" asp-controller="PokeList" asp-action="Index">
+    <input type="text" name="name" placeholder="Search for pokémon" />
+    <button type="submit"></button>
+</form>
+
+@if (Model.Error != null)
 {
-    <p class="text-danger">Wrong</p>
+    <p class="text-danger">@Model.Error</p>
 }
-else
+@if (Model.SearchResult != null)
 {
-    <p>Total: @Model.Count</p>
-    <ul>
-        @foreach (var p in Model.Results)
+    
+    <h2>@Model.SearchResult.PokemonName (#@Model.SearchResult.PokemonId)</h2>
+    <img src="@Model.SearchResult.sprites?.FrontDefault" alt="@Model.SearchResult.PokemonName" width="120" />
+    <p>"Height: @Model.SearchResult.Height | Weight: @Model.SearchResult.weight"</p>
+
+    <div>
+        @foreach (var t in Model.SearchResult.Types)
         {
-            <li>@p.Name</li>
+            <span class="type-badge" style="background-color: var(--type-@t.Type.Name)">
+                @t.Type.Name
+            </span>
+        }
+    </div>
+}
+else if (Model.AllPokemon != null)
+{
+    <p class="total">Total: @Model.AllPokemon.Count</p>
+    <ul class="PokeSearch">
+        @foreach (var p in Model.AllPokemon.Results)
+        {
+            <li class="PokemonCardS">
+                <img src="@p.SpriteUrl" alt="@p.Name" width="120" />
+                <p>@p.Name</p>
+            </li>
         }
     </ul>
 }
+
+
+
+
+
+
+
+
+
+@* @model PokemonMVC.Models.PokemonListResponse
+<h1>All Pokémon</h1>
+<form method="post" asp-controller="Pokesearch" asp-action="Index">
+    <input type="text" name="name" placeholder="Search for pokémon, e.g. Eevee" />
+    <button type="submit">Search</button>
+</form>
+
+@if (ViewBag.Error != null)
+{
+    <p class="text-danger">@ViewBag.Error</p>
+}
+
+else
+{
+    <p>Total: @Model.Count</p>
+    
+
+        <ul class ="PokeSearch">
+        @foreach (var p in Model.Results)
+        {
+            <li class="PokemonCardS">
+                <img src="@p.SpriteUrl" alt="@p.Name" width="60"/>
+                <p>@p.Name</p>
+            </li>
+        }
+    </ul>
+}
+@if (Model != null)
+{
+    <h2>@Model.Name (@Model.PokemonId)</h2>
+    <img src="@Model.Sprites.FrontDefault" alt="@Model.Name" />
+} *@
+
