@@ -40,7 +40,6 @@ namespace PokemonMVC.Services
                 var data = JsonSerializer.Deserialize<PokemonSearch>(json);
 
                 return data;
-
             }
             catch (Exception ex)
             {

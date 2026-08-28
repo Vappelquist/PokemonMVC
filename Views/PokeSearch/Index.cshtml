@@ -1,10 +1,10 @@
-﻿@model PokemonMVC.Models.PokemonSearch
+﻿@* @model PokemonMVC.Models.PokemonSearch
 
 <h1>Search Pokémon</h1>
 
 <form method="post" asp-controller="Pokesearch" asp-action="Index">
-    <input type="text" name="name" placeholder="Search for pokémon, e.g. Eevee"/>
-    <button type ="submit">Search</button>
+    <input type="text" name="name" placeholder="Search for pokémon, e.g. Eevee" />
+    <button type="submit">Search</button>
 </form>
 
 @if (ViewBag.Error != null)
@@ -14,8 +14,8 @@
 
 else if (Model != null)
 {
-    <h2>@Model.PokemonName (@Model.PokemonId)</h2>
-    @* <smg src="@Model.Sprites.FrontDefault" alt="@Model.PokemonName"/> *@
+    <h2>@Model.Name (@Model.PokemonId)</h2>
+    <img src="@Model.Sprites.FrontDefault" alt="@Model.Name" />
 }
 
-
+ *@

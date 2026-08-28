@@ -15,9 +15,12 @@ namespace PokemonMVC.Models
 
         [JsonPropertyName("weight")]
         public int weight { get; set; }
-        
-        
 
+        [JsonPropertyName("sprites")]
+        public PokemonSprites sprites { get; set; }
 
+        [JsonPropertyName("types")]
+        public List<PokemonType> Types { get; set; }
     }
+    
 }
