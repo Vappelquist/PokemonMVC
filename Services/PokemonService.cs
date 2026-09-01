@@ -28,18 +28,47 @@ namespace PokemonMVC.Services
             }
         }
 
-        public async Task<PokemonSearch> PokemonSearch(string name)
+        //public async Task<PokemonSearch> PokemonSearch(string name)
+        //{
+        //    var url = name;
+        //    try
+        //    {
+        //        var response = await _httpClient.GetAsync(url);
+        //        response.EnsureSuccessStatusCode();
+
+        //        var json = await response.Content.ReadAsStringAsync();
+        //        var data = JsonSerializer.Deserialize<PokemonSearch>(json);
+
+        //        return data;
+        //    }
+        //    catch (Exception ex)
+        //    {
+        //        Console.WriteLine(ex);
+        //        return null;
+        //    }
+        //}
+
+        public async Task<List<PokemonListItem>> GetPokemonList(string query)
         {
-            var url = name;
+            var all = await GetAllPokemon();
+            if (all.Results == null)
+            {
+                return new List<PokemonListItem>();
+            }
+            return all.Results
+                .Where (p => p.Name.Contains (query, StringComparison.OrdinalIgnoreCase))
+                .ToList();
+        }
+        
+        public async Task <PokemonSearch> GetPokemonById(int id)
+        {
             try
             {
-                var response = await _httpClient.GetAsync(url);
+                var response = await _httpClient.GetAsync($"{id}/");
                 response.EnsureSuccessStatusCode();
 
                 var json = await response.Content.ReadAsStringAsync();
-                var data = JsonSerializer.Deserialize<PokemonSearch>(json);
-
-                return data;
+                return JsonSerializer.Deserialize<PokemonSearch>(json);
             }
             catch (Exception ex)
             {
@@ -47,7 +76,5 @@ namespace PokemonMVC.Services
                 return null;
             }
         }
-
-        
     }
 }

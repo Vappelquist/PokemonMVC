@@ -34,12 +34,23 @@ namespace PokemonMVC.Models
 
     public class PokemonListItem
     {
+        
 
         [JsonPropertyName("name")]
         public string Name { get; set; }
 
         [JsonPropertyName("url")]
         public string Url { get; set; }
+
+        public int Id
+        {
+            get
+            {
+                var segment = Url?.TrimEnd('/').Split('/').LastOrDefault();
+                return int.TryParse(segment, out int id) ? id : 0;
+            }
+        }
+
         public string SpriteUrl
         {
             get
