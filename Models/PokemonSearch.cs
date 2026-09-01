@@ -11,7 +11,7 @@ namespace PokemonMVC.Models
         public string PokemonName { get; set; }
 
         [JsonPropertyName("height")]
-        public int Height { get; set; }
+        public int height { get; set; }
 
         [JsonPropertyName("weight")]
         public int weight { get; set; }
