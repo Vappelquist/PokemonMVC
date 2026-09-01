@@ -37,11 +37,11 @@ namespace PokemonMVC.Controllers
             var filtered = await _pokeService.GetPokemonList(name);
             var vmFiltered = new PokeListViewModel()
             {
-            AllPokemon = new PokemonListResponse 
-            {
-                Count = filtered.Count,
-                Results = filtered
-            }
+                AllPokemon = new PokemonListResponse
+                {
+                    Count = filtered.Count,
+                    Results = filtered
+                }
             };
             return View(vmFiltered);
             //var result = await _pokeService.PokemonSearch(name);
@@ -56,10 +56,21 @@ namespace PokemonMVC.Controllers
             //}
 
             //return View(new PokeListViewModel { SearchResult = result });
-                
-            }
-            
 
         }
+        [HttpGet]
+        public async Task<IActionResult> Details(int id)
+        {
+            var pokemon = await _pokeService.GetPokemonById(id);
+            if (pokemon == null)
+            {
+                return NotFound();
+            }
+            else
+            {
+                return View(pokemon);
+            }
+        }
     }
+}
 

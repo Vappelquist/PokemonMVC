@@ -22,5 +22,4 @@ namespace PokemonMVC.Models
         [JsonPropertyName("types")]
         public List<PokemonType> Types { get; set; }
     }
-    
 }

@@ -7,5 +7,7 @@ namespace PokemonMVC.Services
         Task<PokemonListResponse> GetAllPokemon();
         //Task<PokemonSearch> PokemonSearch(string name);
         Task<List<PokemonListItem>> GetPokemonList(string query);
+        Task<PokemonSearch> GetPokemonById(int id);
+
     }
 }

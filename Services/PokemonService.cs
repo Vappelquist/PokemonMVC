@@ -60,5 +60,21 @@ namespace PokemonMVC.Services
                 .ToList();
         }
         
+        public async Task <PokemonSearch> GetPokemonById(int id)
+        {
+            try
+            {
+                var response = await _httpClient.GetAsync($"{id}/");
+                response.EnsureSuccessStatusCode();
+
+                var json = await response.Content.ReadAsStringAsync();
+                return JsonSerializer.Deserialize<PokemonSearch>(json);
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex);
+                return null;
+            }
+        }
     }
 }
