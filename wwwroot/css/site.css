@@ -17,7 +17,10 @@
     --type-dark: #705848;
     --type-steel: #B8B8D0;
     --type-fairy: #EE99AC;
+    --pokedex: #40E0D0;
+    --bg: #0000006e;
 }
+/*f6f6f280*/
 
 html {
     font-size: 14px;
@@ -63,20 +66,86 @@ p.text-danger {
 }
 
 li.PokemonCardS {
-    background-color: var(--type-fire);
+    background-color: var(--pokedex);
+    filter: drop-shadow(0 0 5px black);
+    border-radius: 1em;
     display: flex;
     align-content: center;
     justify-content: center;
     flex-direction: column;
     align-items: center;
     margin: 1em;
-    
 }
 
 p.total {
     display: flex;
     justify-content: center;
 }
+
+p.PokemonNameLink {
+    justify-content: center;
+    display: flex;
+}
+
+.PokemonNameLink {
+    text-decoration: none;
+    color: black;
+}
+
+.PokemonCardL {
+    height: 20vh;
+    display: flex;
+    flex-direction: row;
+    border-radius: 1em;
+    filter: drop-shadow(0 0 5px black);
+    background-color: var(--bg);
+    align-content: center;
+    
+}
+
+
+.pokemonCardLImg {
+    align-content: center;
+    align-self: center;
+    border-radius: 1em;
+    object-fit: fill;
+    width: 30vw;
+    height: 80%;
+    filter: drop-shadow(0 0 5px black);
+    background-color: var(--bg);
+    margin: 1em;
+}
+.TypeBadgeCol {
+    display: flex;
+    flex-direction: row;
+}
+.type-badge {
+    filter: drop-shadow(0 0 5px black);
+    margin: 1em;
+
+}
+.TypeBadgeDiv {
+    background-color: var(--bg);
+    width: fit-content;
+    filter: drop-shadow(0 0 10px black);
+    border-radius: 0.5em;
+    margin: 0.5em;
+}
+
+img.pokemonImg {
+    object-fit: fill;
+    width: 80%;
+    justify-self: center;
+    display: flex;
+}
+
+.PokemonInfo{
+    background-color: var(--bg);
+    margin: 0.5em;
+}
+
+
+
 /*ToDo
 
     Pokemon "cards"
