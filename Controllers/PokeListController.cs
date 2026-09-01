@@ -34,18 +34,28 @@ namespace PokemonMVC.Controllers
                 };
                 return View(vm);
             }
-            var result = await _pokeService.PokemonSearch(name);
-            if (result == null)
+            var filtered = await _pokeService.GetPokemonList(name);
+            var vmFiltered = new PokeListViewModel()
             {
-                var vm = new PokeListViewModel()
-                {
-                    Error = $"No Pokémon found for \"{name}\"",
-                    AllPokemon = await _pokeService.GetAllPokemon()
-                };
-                return View(vm);
+            AllPokemon = new PokemonListResponse 
+            {
+                Count = filtered.Count,
+                Results = filtered
             }
+            };
+            return View(vmFiltered);
+            //var result = await _pokeService.PokemonSearch(name);
+            //if (result == null)
+            //{
+            //    var vm = new PokeListViewModel()
+            //    {
+            //        Error = $"No Pokémon found for \"{name}\"",
+            //        AllPokemon = await _pokeService.GetAllPokemon()
+            //    };
+            //    return View(vm);
+            //}
 
-            return View(new PokeListViewModel { SearchResult = result });
+            //return View(new PokeListViewModel { SearchResult = result });
                 
             }
             

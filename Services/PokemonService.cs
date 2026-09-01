@@ -28,26 +28,37 @@ namespace PokemonMVC.Services
             }
         }
 
-        public async Task<PokemonSearch> PokemonSearch(string name)
+        //public async Task<PokemonSearch> PokemonSearch(string name)
+        //{
+        //    var url = name;
+        //    try
+        //    {
+        //        var response = await _httpClient.GetAsync(url);
+        //        response.EnsureSuccessStatusCode();
+
+        //        var json = await response.Content.ReadAsStringAsync();
+        //        var data = JsonSerializer.Deserialize<PokemonSearch>(json);
+
+        //        return data;
+        //    }
+        //    catch (Exception ex)
+        //    {
+        //        Console.WriteLine(ex);
+        //        return null;
+        //    }
+        //}
+
+        public async Task<List<PokemonListItem>> GetPokemonList(string query)
         {
-            var url = name;
-            try
+            var all = await GetAllPokemon();
+            if (all.Results == null)
             {
-                var response = await _httpClient.GetAsync(url);
-                response.EnsureSuccessStatusCode();
-
-                var json = await response.Content.ReadAsStringAsync();
-                var data = JsonSerializer.Deserialize<PokemonSearch>(json);
-
-                return data;
+                return new List<PokemonListItem>();
             }
-            catch (Exception ex)
-            {
-                Console.WriteLine(ex);
-                return null;
-            }
+            return all.Results
+                .Where (p => p.Name.Contains (query, StringComparison.OrdinalIgnoreCase))
+                .ToList();
         }
-
         
     }
 }
