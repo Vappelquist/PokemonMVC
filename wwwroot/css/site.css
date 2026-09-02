@@ -20,7 +20,6 @@
     --pokedex: #40E0D0;
     --bg: #0000006e;
 }
-/*f6f6f280*/
 
 html {
     font-size: 14px;
@@ -43,6 +42,9 @@ html {
 
 body {
     margin-bottom: 60px;
+    justify-content: center;
+    display: flex;
+    flex-direction: column;
 }
 
 .form-floating > .form-control-plaintext::placeholder, .form-floating > .form-control::placeholder {
@@ -54,10 +56,13 @@ body {
     text-align: start;
 }
 
-
 form {
     display: flex;
     justify-content: center;
+}
+
+.info {
+    margin-top: 2em
 }
 
 p.text-danger {
@@ -94,36 +99,36 @@ p.PokemonNameLink {
 
 .PokemonCardL {
     height: 20vh;
+    width: fit-content;
     display: flex;
     flex-direction: row;
     border-radius: 1em;
     filter: drop-shadow(0 0 5px black);
     background-color: var(--bg);
     align-content: center;
-    
 }
 
-
-.pokemonCardLImg {
-    align-content: center;
+img.pokemonCardLImg {
     align-self: center;
-    border-radius: 1em;
-    object-fit: fill;
-    width: 30vw;
     height: 80%;
+    width: auto;
+    object-fit: contain;
+    border-radius: 1em;
     filter: drop-shadow(0 0 5px black);
     background-color: var(--bg);
     margin: 1em;
+    margin-right: 5em;
 }
+
 .TypeBadgeCol {
     display: flex;
     flex-direction: row;
 }
-.type-badge {
-    filter: drop-shadow(0 0 5px black);
-    margin: 1em;
 
+.type-badge {
+    margin: 1em;
 }
+
 .TypeBadgeDiv {
     background-color: var(--bg);
     width: fit-content;
@@ -132,22 +137,26 @@ p.PokemonNameLink {
     margin: 0.5em;
 }
 
-img.pokemonImg {
-    object-fit: fill;
-    width: 80%;
-    justify-self: center;
-    display: flex;
-}
-
-.PokemonInfo{
+.PokemonInfo {
     background-color: var(--bg);
     margin: 0.5em;
 }
 
+@media (min-width: 900px) {
+    div.PokemonCardL {
+        height: 30vh;
+        width: 50vw;
+        display: flex;
+        flex-direction: row;
+        border-radius: 1em;
+        filter: drop-shadow(0 0 5px black);
+        background-color: var(--bg);
+        align-content: center;
+    }
+}
 
-
-/*ToDo
-
-    Pokemon "cards"
-    Links
-*/
+@media(max-height: 670px) {
+    .PokemonCardL {
+        height: fit-content;
+    }
+}

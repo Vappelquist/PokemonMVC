@@ -2,16 +2,11 @@
 @{
     var mainType = Model.Types.FirstOrDefault()?.Type?.Name ?? "Unknown";
 }
-<div class="PokemonCardL"
-     style="background-color: var(--type-@mainType)">
-    <div class="pokemonCardLImg"
-        @* style="background-color: var(--type-@mainType)"  *@>
+<div class="PokemonCardL" style="background-color: var(--type-@mainType)">
+    <img src="@Model.sprites.FrontDefault"
+         alt="@Model.PokemonName"
+         class="pokemonCardLImg" />
 
-        <img src="@Model.sprites.FrontDefault"
-             alt="@Model.PokemonName"
-             class="pokemonImg"
-        @* style="background-color: rgba(var(--type-@mainType), 0,5)  *@ />
-    </div>
     <section class="info">
 
         <h2>@Model.PokemonName (@Model.PokemonId)</h2>
@@ -27,9 +22,8 @@
             }
         </div>
         <section class="PokemonInfo">
-        <p>Weight: @Model.weight lbs</p>
+            <p>Weight: @Model.weight lbs</p>
             <p>Height: @Model.height "</p>
-            <p></p>
         </section>
     </section>
 </div>
