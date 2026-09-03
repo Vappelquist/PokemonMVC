@@ -2,26 +2,26 @@
 @{
     var mainType = Model.Types.FirstOrDefault()?.Type?.Name ?? "Unknown";
 }
-<div class="PokemonCardL" style="background-color: var(--type-@mainType)">
+<div class="pokemon-card-l" style="background-color: var(--type-@mainType)">
     <img src="@Model.sprites.FrontDefault"
          alt="@Model.PokemonName"
-         class="pokemonCardLImg" />
+         class="pokemon-card-l-img" />
 
     <section class="info">
 
         <h2>@Model.PokemonName (@Model.PokemonId)</h2>
 
-        <div class="TypeBadgeCol">
+        <div class="type-badge-container">
             @foreach (var t in Model.Types)
             {
-                <div class="TypeBadgeDiv">
+                <div class="type-badge-div">
                     <span class="type-badge" style="background-color: var(--type-@t.Type.Name)">
                         @t.Type.Name
                     </span>
                 </div>
             }
         </div>
-        <section class="PokemonInfo">
+        <section class="pokemon-info">
             <p>Weight: @Model.weight lbs</p>
             <p>Height: @Model.height "</p>
         </section>
