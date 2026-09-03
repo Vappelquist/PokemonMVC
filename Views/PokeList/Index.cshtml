@@ -2,14 +2,16 @@
 
 <form class="searchbar" method="post" asp-controller="PokeList" asp-action="Index">
     <input type="text" name="name" placeholder="Search for pokémon" />
-    <button type="submit"></button>
+    <button type="submit">Search</button>
 </form>
+
+
 
 @if (Model.Error != null)
 {
     <p class="text-danger">@Model.Error</p>
 }
-else if (Model.AllPokemon != null)
+@if (Model.AllPokemon != null)
 {
     <p class="total">Total: @Model.AllPokemon.Count</p>
     <ul>
@@ -17,9 +19,12 @@ else if (Model.AllPokemon != null)
         {
             <li class="pokemon-card-s">
                 <a asp-controller="PokeList" asp-action="Details" asp-route-id="@p.Id" class="pokemon-card-s">
-                    <img src="@p.SpriteUrl" alt="@p.Name" width="120" />
-                <p class="pokemon-name-link">@p.Name</p>
-            </a>
+                    <img src="@p.SpriteUrl"
+                    alt="@p.Name"
+                    width="120"
+                    onerror="this.onerror=null; this.src='@p.OfficialArtworkUrl';"/>
+                    <p class="pokemon-name-link">@p.Name</p>
+                </a>
             </li>
         }
     </ul>
