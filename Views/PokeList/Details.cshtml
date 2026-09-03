@@ -1,15 +1,15 @@
-﻿@model PokemonMVC.Models.PokemonSearch
+﻿@model PokemonMVC.Models.PokemonModel
 @{
     var mainType = Model.Types.FirstOrDefault()?.Type?.Name ?? "Unknown";
 }
 <div class="pokemon-card-l" style="background-color: var(--type-@mainType)">
-    <img src="@Model.sprites.FrontDefault"
-         alt="@Model.PokemonName"
+    <img src="@Model.Sprites.FrontDefault"
+         alt="@Model.Name"
          class="pokemon-card-l-img" />
 
     <section class="info">
 
-        <h2>@Model.PokemonName (@Model.PokemonId)</h2>
+        <h2>@Model.Name (@Model.Id)</h2>
 
         <div class="type-badge-container">
             @foreach (var t in Model.Types)
@@ -22,8 +22,8 @@
             }
         </div>
         <section class="pokemon-info">
-            <p>Weight: @Model.weight lbs</p>
-            <p>Height: @Model.height "</p>
+            <p>Weight: @Model.Weight lbs</p>
+            <p>Height: @Model.Height "</p>
         </section>
     </section>
 </div>
