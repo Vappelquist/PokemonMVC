@@ -17,20 +17,37 @@ namespace PokemonMVC.Models
         [JsonPropertyName("weight")]
         public int Weight { get; set; }
 
-        [JsonPropertyName("sprites")]
-        public PokemonSprites Sprites { get; set; }
 
         [JsonPropertyName("types")]
         public List<PokemonType> Types { get; set; }
+        [JsonPropertyName("base_stat")]
+        public int BaseStat { get; set; }
+        [JsonPropertyName("stat")]
+        public List<PokemonType> Stat { get; set; }
+        [JsonPropertyName("sprites")]
+        public PokemonSprites Sprites { get; set; }
+        
     }
 
     public class PokemonSprites
     {
         [JsonPropertyName("front_default")]
         public string FrontDefault { get; set; }
+        [JsonPropertyName("other")]
+        public SpritesOther Other { get; set; }
     }
 
+    public class SpritesOther
+    {
+        [JsonPropertyName("official-artwork")]
+        public OfficialArtwork OfficialArtwork { get; set; }
+    }
 
+    public class OfficialArtwork
+    {
+        [JsonPropertyName("front_default")]
+        public string FrontDefault { get; set; }
+    }
 
     public class PokemonListItem
     {
@@ -61,6 +78,10 @@ namespace PokemonMVC.Models
                     : null;
             }
         }
+        public string OfficialArtworkUrl => 
+            Id != 0
+            ? $"https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/{Id}.png"
+            : null;
     }
     public class PokemonListResponse
     {

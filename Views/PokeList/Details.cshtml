@@ -1,11 +1,36 @@
 ﻿@model PokemonMVC.Models.PokemonModel
 @{
     var mainType = Model.Types.FirstOrDefault()?.Type?.Name ?? "Unknown";
+    bool officialArtworkAvailable = Model.Sprites.Other?.OfficialArtwork?.FrontDefault != null;
+    bool spriteAvailable = Model.Sprites.FrontDefault != null;
 }
 <div class="pokemon-card-l" style="background-color: var(--type-@mainType)">
-    <img src="@Model.Sprites.FrontDefault"
+
+    
+
+    @if (officialArtworkAvailable && spriteAvailable)
+    {
+        <img src="@Model.Sprites.FrontDefault"
          alt="@Model.Name"
+         id="defaultSprite"
          class="pokemon-card-l-img" />
+
+        <img src="@Model.Sprites.Other.OfficialArtwork.FrontDefault"
+             alt="@Model.Name Official Artwork"
+             id="officialArtwork"
+             class="pokemon-card-l-img"
+        style="display: none;" 
+             />
+    }
+    else if (!spriteAvailable)
+    {
+
+        <img src="@Model.Sprites.Other.OfficialArtwork.FrontDefault"
+             alt="@Model.Name Official Artwork"
+             id="officialArtwork"
+             class="pokemon-card-l-img" 
+             />
+    }
 
     <section class="info">
 
@@ -27,4 +52,37 @@
         </section>
     </section>
 </div>
-<a asp-controller="PokeList" asp-action="Index">Back</a>
+
+    @if (officialArtworkAvailable)
+    {
+        <button id="toggleArtworkBtn" class="btn btn-primary">Toggle Artwork</button>
+    }
+<div class="in-card-nav">
+    <div class="previous-pokemon">
+        @{
+            var previousId = Model.Id == 1 ? 10326 : Model.Id - 1;
+        }
+        <button onclick="location.href='@Url.Action("Details", "PokeList", new { id = previousId })'">Previous</button>
+    </div>
+
+    <button onclick="location.href='@Url.Action("Index", "PokeList")'">Back to List</button>
+    
+    <div class="next-pokemon">
+        @{
+            var nextId = Model.Id == 10326 ? 1 : Model.Id + 1;
+        }
+        <button onclick="location.href='@Url.Action("Details", "PokeList", new { id = nextId })'">Next</button        
+    </div>
+</div>
+
+<script>
+    document.getElementById('toggleArtworkBtn')?.addEventListener('click', function() {
+        const defaultImg = document.getElementById('defaultSprite');
+        const artworkImg = document.getElementById('officialArtwork');
+        const showingArtwork = artworkImg.style.display !== 'none';
+
+        artworkImg.style.display = showingArtwork ? 'none' : 'block';
+        defaultImg.style.display = showingArtwork ? 'block' : 'none';
+
+    });
+</script>

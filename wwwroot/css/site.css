@@ -138,6 +138,12 @@ img.pokemon-card-l-img {
     background-color: var(--bg);
     margin: 0.5em;
 }
+.in-card-nav {
+    display: flex;
+    flex-direction: row;
+    justify-self: center;
+}
+
 
 @media (min-width: 900px) {
     div.pokemon-card-l {
