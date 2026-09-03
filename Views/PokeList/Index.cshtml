@@ -1,6 +1,6 @@
 ﻿@model PokemonMVC.Models.PokeListViewModel
 
-<form class "searchbar" method="post" asp-controller="PokeList" asp-action="Index">
+<form class="searchbar" method="post" asp-controller="PokeList" asp-action="Index">
     <input type="text" name="name" placeholder="Search for pokémon" />
     <button type="submit"></button>
 </form>
@@ -9,32 +9,16 @@
 {
     <p class="text-danger">@Model.Error</p>
 }
-@if (Model.SearchResult != null)
-{
-    
-    <h2>@Model.SearchResult.PokemonName (#@Model.SearchResult.PokemonId)</h2>
-    <img src="@Model.SearchResult.sprites?.FrontDefault" alt="@Model.SearchResult.PokemonName" width="120" />
-    <p>"Height: @Model.SearchResult.height | Weight: @Model.SearchResult.weight"</p>
-
-    <div>
-        @foreach (var t in Model.SearchResult.Types)
-        {
-            <span class="type-badge" style="background-color: var(--type-@t.Type.Name)">
-                @t.Type.Name
-            </span>
-        }
-    </div>
-}
 else if (Model.AllPokemon != null)
 {
     <p class="total">Total: @Model.AllPokemon.Count</p>
-    <ul class="PokeSearch">
+    <ul>
         @foreach (var p in Model.AllPokemon.Results)
         {
-            <li class="PokemonCardS">
-                <a asp-controller="PokeList" asp-action="Details" asp-route-id="@p.Id" class="PokemonCardS">
+            <li class="pokemon-card-s">
+                <a asp-controller="PokeList" asp-action="Details" asp-route-id="@p.Id" class="pokemon-card-s">
                     <img src="@p.SpriteUrl" alt="@p.Name" width="120" />
-                <p class="PokemonNameLink">@p.Name</p>
+                <p class="pokemon-name-link">@p.Name</p>
             </a>
             </li>
         }

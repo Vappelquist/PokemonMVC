@@ -70,7 +70,7 @@ p.text-danger {
     justify-content: center;
 }
 
-li.PokemonCardS {
+li.pokemon-card-s {
     background-color: var(--pokedex);
     filter: drop-shadow(0 0 5px black);
     border-radius: 1em;
@@ -87,17 +87,14 @@ p.total {
     justify-content: center;
 }
 
-p.PokemonNameLink {
+p.pokemon-name-link {
     justify-content: center;
     display: flex;
-}
-
-.PokemonNameLink {
     text-decoration: none;
     color: black;
 }
 
-.PokemonCardL {
+.pokemon-card-l {
     height: 20vh;
     width: fit-content;
     display: flex;
@@ -108,7 +105,7 @@ p.PokemonNameLink {
     align-content: center;
 }
 
-img.pokemonCardLImg {
+img.pokemon-card-l-img {
     align-self: center;
     height: 80%;
     width: auto;
@@ -120,7 +117,7 @@ img.pokemonCardLImg {
     margin-right: 5em;
 }
 
-.TypeBadgeCol {
+.type-badge-container {
     display: flex;
     flex-direction: row;
 }
@@ -129,7 +126,7 @@ img.pokemonCardLImg {
     margin: 1em;
 }
 
-.TypeBadgeDiv {
+.type-badge-div {
     background-color: var(--bg);
     width: fit-content;
     filter: drop-shadow(0 0 10px black);
@@ -137,13 +134,13 @@ img.pokemonCardLImg {
     margin: 0.5em;
 }
 
-.PokemonInfo {
+.pokemon-info {
     background-color: var(--bg);
     margin: 0.5em;
 }
 
 @media (min-width: 900px) {
-    div.PokemonCardL {
+    div.pokemon-card-l {
         height: 30vh;
         width: 50vw;
         display: flex;
@@ -156,7 +153,7 @@ img.pokemonCardLImg {
 }
 
 @media(max-height: 670px) {
-    .PokemonCardL {
+    .pokemon-card-l {
         height: fit-content;
     }
 }

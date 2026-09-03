@@ -6,7 +6,7 @@ namespace PokemonMVC.Models
     public class PokemonModel
     {
         [JsonPropertyName("id")]
-        public int PokemonId { get; set; }
+        public int Id { get; set; }
 
         [JsonPropertyName("name")]
         public string Name { get; set; }
@@ -15,15 +15,15 @@ namespace PokemonMVC.Models
         public int Height { get; set; }
 
         [JsonPropertyName("weight")]
-        public int weight { get; set; }
+        public int Weight { get; set; }
 
         [JsonPropertyName("sprites")]
         public PokemonSprites Sprites { get; set; }
 
         [JsonPropertyName("types")]
         public List<PokemonType> Types { get; set; }
-
     }
+
     public class PokemonSprites
     {
         [JsonPropertyName("front_default")]
@@ -34,7 +34,7 @@ namespace PokemonMVC.Models
 
     public class PokemonListItem
     {
-        
+
 
         [JsonPropertyName("name")]
         public string Name { get; set; }
@@ -68,13 +68,13 @@ namespace PokemonMVC.Models
         public int Count { get; set; }
 
         [JsonPropertyName("results")]
-        public List<PokemonListItem> Results { get; set; }
+        public List<PokemonListItem>? Results { get; set; }
     }
 
     public class PokemonType
     {
         [JsonPropertyName("type")]
-        public NamedResource Type { get; set; }
+        public NamedResource? Type { get; set; }
     }
     public class NamedResource
     {
