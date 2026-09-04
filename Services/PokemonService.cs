@@ -21,11 +21,22 @@ namespace PokemonMVC.Services
                 var json = await response.Content.ReadAsStringAsync();
                 return JsonSerializer.Deserialize<PokemonListResponse>(json);
             }
-            catch (Exception ex)
+            catch (HttpRequestException ex) when (ex.StatusCode == System.Net.HttpStatusCode.NotFound)
             {
                 Console.WriteLine(ex);
                 return null;
             }
+            catch (HttpRequestException ex)
+            {
+                Console.WriteLine(ex);
+                throw;
+            }
+            catch (TaskCanceledException ex)
+            {
+                Console.WriteLine(ex);
+                throw;
+            }
+            
         }
 
         public async Task<List<PokemonListItem>> GetPokemonList(string query)
@@ -49,11 +60,23 @@ namespace PokemonMVC.Services
 
                 var json = await response.Content.ReadAsStringAsync();
                 return JsonSerializer.Deserialize<PokemonModel>(json);
+                
+                
             }
-            catch (Exception ex)
+            catch (HttpRequestException ex) when (ex.StatusCode == System.Net.HttpStatusCode.NotFound)
             {
                 Console.WriteLine(ex);
                 return null;
+            }
+            catch (HttpRequestException ex)
+            {
+                Console.WriteLine(ex);
+                throw;
+            }
+            catch (TaskCanceledException ex)
+            {
+                Console.WriteLine(ex);
+                throw;
             }
         }
     }

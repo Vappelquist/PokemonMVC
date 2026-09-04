@@ -13,6 +13,7 @@ namespace PokemonMVC
 
             builder.Services.AddHttpClient<IPokemonService, PokemonService>(client =>
             {
+                //client.BaseAddress = new Uri("https://localhost:59999/api/v2/pokemon/");
                 client.BaseAddress = new Uri("https://pokeapi.co/api/v2/pokemon/");
                 client.Timeout = TimeSpan.FromSeconds(10);
             });
@@ -27,6 +28,8 @@ namespace PokemonMVC
                 app.UseHsts();
             }
 
+
+            app.UseMiddleware<PokemonMVC.Middlewares.ErrorMiddleware>();
             app.UseHttpsRedirection();
             app.UseRouting();
 
