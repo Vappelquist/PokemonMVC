@@ -1,4 +1,4 @@
-﻿using PokemonMVC.Models;
+using PokemonMVC.Models;
 using System.Text.Json.Serialization;
 
 namespace PokemonMVC.Models
@@ -20,10 +20,12 @@ namespace PokemonMVC.Models
 
         [JsonPropertyName("types")]
         public List<PokemonType> Types { get; set; }
+        //Forgot to implement, but should be ready - Start
         [JsonPropertyName("base_stat")]
         public int BaseStat { get; set; }
         [JsonPropertyName("stat")]
         public List<PokemonType> Stat { get; set; }
+        //End
         [JsonPropertyName("sprites")]
         public PokemonSprites Sprites { get; set; }
         
